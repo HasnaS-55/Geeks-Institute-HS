@@ -1,4 +1,3 @@
-
 try_num = 3
 while try_num >= 0:
     name = input("Try to guess my  first name ")
