@@ -18,11 +18,10 @@ class Dog:
         else:
             return f'{other_dog.name} wons the fight with {self.name}'
 
-# Step 2: Create dog instances
-#... your code here
+
 dog1 = Dog("Rick", 5, 15)
 dog2 = Dog("Moli", 4, 14)
-# Step 3: Test dog methods
+
 print(dog1.bark())
 print(dog2.run_speed())
 print(dog1.fight(dog2))

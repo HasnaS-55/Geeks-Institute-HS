@@ -12,7 +12,7 @@ class PetDog(Dog):
 
     def play(self, *args):
         
-        dog_names = [self.name]  #dog_names = [self.name] + [dog for dog in args]
+        dog_names = [self.name]  
         for dog in args:
            dog_names.append(dog)
         print(f"{', '.join(dog_names)} all play together")
@@ -22,7 +22,7 @@ class PetDog(Dog):
             tricks = ["does a barrel roll", "stands on his back legs", "shakes your hand", "plays dead"]
             print(f"{self.name} {random.choice(tricks)}")
 
-# Test PetDog methods
+
 my_dog = PetDog("Fido", 2, 10)
 my_dog.train()
 my_dog.play("Buddy", "Max")
