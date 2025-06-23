@@ -20,6 +20,6 @@ def find_oldest_cat(cat1, cat2, cat3):
     return older_cat
 
 
-# Step 3: Print the oldest cat's details
+
 older_cat_result = find_oldest_cat(cat1, cat2, cat3)
 print(older_cat_result)
