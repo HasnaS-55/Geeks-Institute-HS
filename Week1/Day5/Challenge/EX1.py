@@ -3,7 +3,10 @@ import turtle
 
 class Circle():
     def __init__(self, radius = None, diameter = None):
-        self.radius = radius
+        if radius is not None:
+            self.radius = radius
+        elif diameter is not None:
+            self.radius = diameter / 2
         self.diameter = diameter
 
     
@@ -12,23 +15,18 @@ class Circle():
         
     
     def area_compute(self):
-        if self.radius != None:
-            return print(f'The area is {math.pi * self.radius ** 2}cm2')
-        elif self.diameter != None:
-            return print(f'The area is {1/4 * math.pi * self.diameter ** 2}cm2')
+        return f'The area is {math.pi * self.radius ** 2 : .2f}cm2'
         
-    def __str__(self):
-        if self.radius == None:
-            print(f'Cirsle diameter is {self.diameter}cm')
-        elif self.diameter == None:
-            print(f'Cirsle radius is {self.radius}cm') 
-        else:
-            print(f'Cirsle diameter is {self.diameter}cm and radius is {self.radius}cm')
+        
 
     def __add__(self, other):
-        
         new_radius = self.radius + other.radius
-        return Circle(radius = new_radius)
+
+        
+        return Circle(new_radius)
+        
+        
+        
 
     
     def __gt__(self, other):
@@ -39,28 +37,34 @@ class Circle():
         
         return self.radius == other.radius
     
+
+    
     
     
 
     
 
 c1 = Circle(radius=5)
-c2 = Circle(diameter=14)  # radius=7
+c2 = Circle(diameter=14)  
 
 c1.area_compute()
+c2.area_compute()
 
 
-print(c1 == c2) 
+print("c1 = c2", c1 == c2) 
 
 # Addition
 c3 = c1 + c2
-print(c3)
+print(f'c1 + c2 = Circle: radius {c3.radius}, area {c3.area_compute()}')
+
+print("c1 > c2", c1 > c2)
 
 
 
-circles = [Circle(radius=10), Circle(radius=5), Circle(radius=7)]
-sorted_circles = sorted(circles)  
-print(sorted_circles)
+sorted_circles = sorted([c1, c2])
+
+for circle in sorted_circles:
+    print(f'Circle with radius: {circle.radius}')
 
 
 
