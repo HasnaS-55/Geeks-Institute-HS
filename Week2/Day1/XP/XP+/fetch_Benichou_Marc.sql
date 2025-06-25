@@ -1,0 +1,1 @@
+select first_name, last_name from student where last_name = 'Benichou' and first_name = 'Marc';

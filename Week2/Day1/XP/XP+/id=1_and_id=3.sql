@@ -1,0 +1,1 @@
+select first_name, last_name from student where id = 1 or id = 3;
