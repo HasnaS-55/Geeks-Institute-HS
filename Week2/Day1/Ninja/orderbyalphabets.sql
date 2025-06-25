@@ -1,0 +1,1 @@
+SELECT * FROM student ORDER BY last_name ASC LIMIT 4;

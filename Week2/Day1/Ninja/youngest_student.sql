@@ -1,0 +1,1 @@
+SELECT * FROM student ORDER BY birth_date DESC LIMIT 1;
