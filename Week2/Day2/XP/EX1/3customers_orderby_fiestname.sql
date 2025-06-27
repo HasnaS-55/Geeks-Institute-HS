@@ -1,0 +1,1 @@
+select first_name, last_name from customers order by first_name ASC limit 3;
