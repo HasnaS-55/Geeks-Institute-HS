@@ -1,0 +1,145 @@
+# =========================
+# Python
+# =========================
+
+# Bytecode
+_pycache_/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.pipenv/
+.pip-cache/
+
+# Distribution and packaging
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.spec
+
+# Django stuff
+*.log
+staticfiles/
+local_settings.py
+db.sqlite3
+
+# Flask stuff
+instance/
+*.db
+*.sqlite
+
+# Test and coverage
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+coverage.xml
+*.cover
+.hypothesis/
+.pyre/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# =========================
+# JavaScript / Node
+# =========================
+
+# Dependency directories
+node_modules/
+bower_components/
+
+# Build output
+build/
+dist/
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next/
+
+# Nuxt.js
+.nuxt/
+
+# Gatsby files
+.cache/
+public/
+
+# Svelte
+.svelte-kit/
+
+# Vite
+.vite/
+
+# Parcel
+.cache/
+
+# Storybook
+.storybook-out/
+out/
+
+# Coverage
+coverage/
+*.lcov
+
+# Other
+.DS_Store
+Thumbs.db
+
+# =========================
+# Editor / OS
+# =========================
+
+# VSCode
+.vscode/
+.history/
+
+# JetBrains
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
