@@ -1,78 +1,63 @@
 import math
 
-
 class Pagination:
-    def __init__(self, items = None, page_size = 10):
+    def __init__(self, items=None, page_size=10):
         self.items = [] if items is None else items
         self.page_size = page_size
-        self.current_idx = 0
-        self.total_page = math.ceil(len(self.items) / self.page_size)
-
-    def get_visible_items(self, current_page):
-        self.current_page = current_page
-        idx_start = self.current_page * self.page_size - self.page_size
-        idx_fin = idx_start + self.page_size
-        
-        
-        
-        
-        return print(f'Content of page {self.current_page} is {self.items[idx_start: idx_fin]}')
+        self.current_page = 1  
+        self.total_pages = max(1, math.ceil(len(self.items) / self.page_size))
+    
+    def get_visible_items(self):
+        start_idx = (self.current_page - 1) * self.page_size
+        end_idx = start_idx + self.page_size
+        return self.items[start_idx:end_idx]
     
     def go_to_page(self, page_num):
-        self.page_num = page_num
-        if page_num not in range(0, self.total_page):
-            raise ValueError (f'There is no page {self.page_num} ')
-            
-        else:
-            self.get_visible_items(self.page_num)
-
+        if not 1 <= page_num <= self.total_pages:
+            raise ValueError(f'Invalid page number: {page_num}. Must be between 1 and {self.total_pages}')
+        self.current_page = page_num
+        return self
+    
     def first_page(self):
-        return self.get_visible_items(1)
+        self.current_page = 1
+        return self
     
     def last_page(self):
-        return self.get_visible_items(self.total_page)
+        self.current_page = self.total_pages
+        return self
     
     def next_page(self):
-        self.current_page += 1
-        return self.get_visible_items(self.current_page)
-
+        if self.current_page < self.total_pages:
+            self.current_page += 1
+        return self
     
     def previous_page(self):
-        self.current_page -= 1
-        return self.get_visible_items(self.current_page)
+        if self.current_page > 1:
+            self.current_page -= 1
+        return self
     
     def __str__(self):
-        current_page = self.current_page
-        idx_start = current_page * self.page_size - self.page_size
-        idx_fin = idx_start + self.page_size
-        string = ""
-
-        for i in self.items[idx_start: idx_fin]:
-            string += f'\n{i}'
-
-        return print(string)
-        
-        
-
-        
-
-
-        
-    
-book1 = Pagination(list( "ABCDEFGHIJKLMNOPQRSTUVWXY"), 2)
-book1.get_visible_items(2)
-book1.first_page()
-book1.last_page()
-book1.previous_page()
-book1.next_page()
-book1.get_visible_items(2)
-book1.__str__()
-book1.next_page()
-book1.__str__()
+        return '\n'.join(str(item) for item in self.get_visible_items())
 
 
 
+alphabetList = list("abcdefghijklmnopqrstuvwxyz")
+p = Pagination(alphabetList, 4)
 
+print(p.get_visible_items())  
 
-       
-        
+p.next_page()
+print(p.get_visible_items())  
+
+p.last_page()
+print(p.get_visible_items())  
+
+p.go_to_page(6)  
+print(p.current_page)  
+
+try:
+    p.go_to_page(0)  
+except ValueError as e:
+    print(e)  
+
+print(str(p))  
