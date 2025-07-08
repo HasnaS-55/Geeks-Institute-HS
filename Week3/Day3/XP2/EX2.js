@@ -1,7 +1,3 @@
-const btn = document.querySelector('button')
-btn.addEventListener('click', myMove)
-
-
 function myMove() {
     const animate = document.getElementById('animate')
     let position = 0
@@ -14,7 +10,6 @@ function myMove() {
         animate.style.left = position + 'px'
     }
     }
-    
-    
+   
 
 }
