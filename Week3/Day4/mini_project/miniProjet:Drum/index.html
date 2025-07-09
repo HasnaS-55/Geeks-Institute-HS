@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Drum Machine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #08f;
+            --neon-pink: #f0f;
+            --neon-green: #0f8;
+            --neon-yellow: #ff0;
+            --dark-bg: #111;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--dark-bg);
+            font-family: 'Orbitron', sans-serif;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-green));
+            z-index: -1;
+            border-radius: 22px;
+            animation: glowing 3s linear infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes glowing {
+            0% { filter: blur(5px); opacity: 0.7; }
+            50% { filter: blur(7px); opacity: 0.9; }
+            100% { filter: blur(5px); opacity: 0.7; }
+        }
+        
+        .drum {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+            width: 120px;
+            color: white;
+            border: 2px solid var(--neon-blue);
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .drum::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(0, 136, 255, 0.1),
+                transparent
+            );
+            transform: translateX(-100%);
+        }
+        
+        .drum:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+        
+        .drum kbd {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px currentColor;
+        }
+        
+        .drum .note {
+            font-size: 0.9rem;
+            color: var(--neon-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .playing {
+            transform: scale(1.1);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green);
+            animation: pulse 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px var(--neon-green); }
+            50% { box-shadow: 0 0 20px var(--neon-green); }
+            100% { box-shadow: 0 0 5px var(--neon-green); }
+        }
+        
+        .title {
+            position: absolute;
+            top: 30px;
+            color: white;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px var(--neon-pink);
+            letter-spacing: 3px;
+        }
+        
+        .instructions {
+            position: absolute;
+            bottom: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">NEON DRUM MACHINE</h1>
+    
+    <div class="container">
+        <div class="drum" data-key="65">
+            <kbd>A</kbd>
+            <span class="note">Boom</span>
+        </div>
+        <div class="drum" data-key="83">
+            <kbd>S</kbd>
+            <span class="note">Clap</span>
+        </div>
+        <div class="drum" data-key="68">
+            <kbd>D</kbd>
+            <span class="note">Hihat</span>
+        </div>
+        <div class="drum" data-key="70">
+            <kbd>F</kbd>
+            <span class="note">Kick</span>
+        </div>
+        <div class="drum" data-key="71">
+            <kbd>G</kbd>
+            <span class="note">Openhat</span>
+        </div>
+        <div class="drum" data-key="72">
+            <kbd>H</kbd>
+            <span class="note">Ride</span>
+        </div>
+        <div class="drum" data-key="74">
+            <kbd>J</kbd>
+            <span class="note">Snare</span>
+        </div>
+        <div class="drum" data-key="75">
+            <kbd>K</kbd>
+            <span class="note">Tink</span>
+        </div>
+        <div class="drum" data-key="76">
+            <kbd>L</kbd>
+            <span class="note">Tom</span>
+        </div>
+    </div>
+    
+    <p class="instructions">Press keys A-L or click the pads to play</p>
+
+    <!-- Audio elements -->
+    <audio data-key="65" src="sounds/boom.wav"></audio>
+    <audio data-key="83" src="sounds/clap.wav"></audio>
+    <audio data-key="68" src="sounds/hihat.wav"></audio>
+    <audio data-key="70" src="sounds/kick.wav"></audio>
+    <audio data-key="71" src="sounds/openhat.wav"></audio>
+    <audio data-key="72" src="sounds/ride.wav"></audio>
+    <audio data-key="74" src="sounds/snare.wav"></audio>
+    <audio data-key="75" src="sounds/tink.wav"></audio>
+    <audio data-key="76" src="sounds/tom.wav"></audio>
+
+    <script>
+        // Initialize audio context for better performance
+        let audioContext;
+        
+        // First interaction unlocks audio
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        
+        // Play sound function with error handling
+        function playSound(keyCode) {
+            const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+            const drum = document.querySelector(`.drum[data-key="${keyCode}"]`);
+            
+            if (!audio) return;
+            
+            try {
+                // Reset and play audio
+                audio.currentTime = 0;
+                const playPromise = audio.play();
+                
+                // Visual feedback
+                if (drum) {
+                    drum.classList.add('playing');
+                    setTimeout(() => drum.classList.remove('playing'), 100);
+                }
+                
+                // Handle promise rejection
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.error('Playback failed:', error);
+                        if (error.name === 'NotAllowedError') {
+                            alert('Please click the page first to enable audio');
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('Audio error:', error);
+            }
+        }
+        
+        // Keyboard event listener
+        window.addEventListener('keydown', function(event) {
+            const allowedKeys = [65, 83, 68, 70, 71, 72, 74, 75, 76];
+            if (allowedKeys.includes(event.keyCode)) {
+                event.preventDefault();
+                playSound(event.keyCode);
+            }
+        });
+        
+        // Click event listeners for drums
+        document.querySelectorAll('.drum').forEach(drum => {
+            drum.addEventListener('click', function() {
+                const keyCode = this.getAttribute('data-key');
+                playSound(keyCode);
+            });
+        });
+        
+        // Initialize on first interaction
+        document.body.addEventListener('click', initAudio, { once: true });
+        document.body.addEventListener('keydown', initAudio, { once: true });
+    </script>
+</body>
+</html>
