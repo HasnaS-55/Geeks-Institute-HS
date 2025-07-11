@@ -93,9 +93,9 @@ console.log(isString([1, 2, 4, 0]));
 
 // EX4: Find the Sum
 let sum = (a, b) => a + b;
-console.log(sum(5, 9))(
+console.log(sum(5, 9))
   // EX5: Kg and Gram
-  function kgToGrams(a) {
+(function kgToGrams(a) {
     console.log(`${a * 1000}`);
   }
 )(5);
@@ -105,9 +105,9 @@ let weight = (function weightKg(a) {
 })(6);
 // Function declarations are hoisted and can be called before they're defined; expressions are not hoisted.
 let convert = (a) => a * 1000;
-console.log(convert(6))(
+console.log(convert(6))
   // EX6: Fortune teller
-  function teller(nChildren, pName, location, job) {
+(function teller(nChildren, pName, location, job) {
     let text = document.createElement("div");
     let t = `You will be a ${job} in ${location}, and married to ${pName} with ${nChildren} kids." `;
     text.textContent = t;
@@ -118,9 +118,9 @@ console.log(convert(6))(
   "Lamya",
   "Tan",
   "Manager"
-)(
+)
   // EX7: Welcome
-  function welcome(username) {
+(function welcome(username) {
     let profileDiv = document.getElementById("user-profile");
     let welcome = document.createElement("span");
     welcome.textContent = `Welcome back ${username}`;
