@@ -8,19 +8,26 @@ const planets = [
   { name: "Uranus", moons: ["Titania", "Oberon"] },
   { name: "Neptune", moons: ["Triton"] },
 ];
+
 const listPlanets = document.querySelector(".listPlanets");
+
 for (let planet of planets) {
-  let divCreat = document.createElement("div");
-  divCreat.textContent = planet.name;
-  divCreat.classList.add("planet", planet.name.toLowerCase());
+  // Planet div (container)
+  let planetDiv = document.createElement("div");
+  planetDiv.classList.add("planet", planet.name.toLowerCase());
+  planetDiv.textContent = planet.name;
 
-  
-
-  planet.moons.forEach((moon) => {
+  // Add moons inside planet
+  planet.moons.forEach((moon, index) => {
     let moonDiv = document.createElement("div");
     moonDiv.textContent = moon;
     moonDiv.classList.add("moon");
-    divCreat.appendChild(moonDiv);
+
+    // Optional: Add custom position data
+    moonDiv.style.transform = `rotate(${index * (360 / planet.moons.length)}deg) translate(35px) rotate(-${index * (360 / planet.moons.length)}deg)`;
+
+    planetDiv.appendChild(moonDiv);
   });
-  listPlanets.appendChild(divCreat);
+
+  listPlanets.appendChild(planetDiv);
 }

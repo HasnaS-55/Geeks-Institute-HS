@@ -86,6 +86,7 @@ function createCalendar(year, month) {
     const daysInMonth = new Date(year, month, 0).getDate();
     
     
+    
     const startDay = firstWeekday === 0 ? 6 : firstWeekday - 1;
     
     
@@ -127,4 +128,4 @@ function createCalendar(year, month) {
     return table;
 }
 
-document.body.appendChild(createCalendar(2012, 9));
+

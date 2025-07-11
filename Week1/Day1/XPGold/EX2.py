@@ -9,3 +9,4 @@ for index, nu in enumerate(numbers):
     if index % 2 == 0:  
         print(nu, end=' ')
   
+
