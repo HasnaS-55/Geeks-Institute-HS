@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Welcome</title>
+    <style>
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #dee2e6;
+      }
+
+      #user-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-brand">My Website</div>
+      <div id="user-profile"></div>
+    </nav>
+    <script>
+      (function welcome(username) {
+        let profileDiv = document.getElementById("user-profile");
+        let welcome = document.createElement("span");
+        welcome.textContent = `Welcome back ${username}`;
+        profileDiv.appendChild(welcome);
+
+        let pic = document.createElement("img");
+        pic.src = `https://ui-avatars.com/api/?name=${username}&background=random&rounded=true`;
+        pic.classList.add("profile-pic");
+        profileDiv.appendChild(pic);
+      })("John");
+    </script>
+  </body>
+</html>

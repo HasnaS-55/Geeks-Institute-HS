@@ -1,68 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Challenge: Create a solar system</title>
-        <style>
-            body {
-                background-color: black;
-                padding: 10px;
-            }
-            .planet-container {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin: 10px;
-    vertical-align: top;
-}
+  <head>
+    <meta charset="utf-8" />
+    <title>Challenge: Create a solar system</title>
+    <style>
+      body {
+        background-color: black;
+        padding: 10px;
+      }
+      .planet-container {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px;
+        vertical-align: top;
+      }
 
-            .planet {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    text-align: center;
-    padding: 10px;
-    color: white;
-    position: relative;
-    border: 2px solid white;
-    display: inline-block;
-    margin: 10px;
-    overflow: hidden;
-    font-size: 12px;
-}
-          .moon {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    top: 40px; /* center-ish base point for orbiting */
-    left: 40px;
-    background: rgb(237, 237, 237);
-    color: black;
-    border-radius: 50%;
-    border: 2px solid red;
-    font-size: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform-origin: center center;
-}
+      .planet {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        text-align: center;
+        padding: 10px;
+        color: white;
+        position: relative;
+        border: 2px solid white;
+        display: inline-block;
+        margin: 10px;
+        overflow: hidden;
+        font-size: 12px;
+      }
+      .moon {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 40px; /* center-ish base point for orbiting */
+        left: 40px;
+        background: rgb(237, 237, 237);
+        color: black;
+        border-radius: 50%;
+        border: 2px solid red;
+        font-size: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform-origin: center center;
+      }
 
+      .mercury {
+        background: #9c9c9c;
+      }
+      .venus {
+        background: #e6c229;
+      }
+      .earth {
+        background: #6b93d6;
+      }
+      .mars {
+        background: #e27b58;
+      }
+      .jupiter {
+        background: #c88b3a;
+      }
+      .saturn {
+        background: #e4d191;
+      }
+      .uranus {
+        background: #d1e7e7;
+      }
+      .neptune {
+        background: #5b5ddf;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="listPlanets"></section>
 
-
-            .mercury { background: #9c9c9c; }
-            .venus   { background: #e6c229; }
-            .earth   { background: #6b93d6; }
-            .mars    { background: #e27b58; }
-            .jupiter { background: #c88b3a; }
-            .saturn  { background: #e4d191; }
-            .uranus  { background: #d1e7e7; }
-            .neptune { background: #5b5ddf; }
-        </style>
-    </head>
-    <body>
-
-        <section class="listPlanets"></section>
-
-        <script src="EX.js"></script>
-    </body>
+    <script src="EX.js"></script>
+  </body>
 </html>

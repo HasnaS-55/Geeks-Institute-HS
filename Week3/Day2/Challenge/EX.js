@@ -24,7 +24,9 @@ for (let planet of planets) {
     moonDiv.classList.add("moon");
 
     // Optional: Add custom position data
-    moonDiv.style.transform = `rotate(${index * (360 / planet.moons.length)}deg) translate(35px) rotate(-${index * (360 / planet.moons.length)}deg)`;
+    moonDiv.style.transform = `rotate(${
+      index * (360 / planet.moons.length)
+    }deg) translate(35px) rotate(-${index * (360 / planet.moons.length)}deg)`;
 
     planetDiv.appendChild(moonDiv);
   });
