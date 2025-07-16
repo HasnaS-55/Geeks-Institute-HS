@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Challenge1</title>
+  </head>
+  <body>
+    <form action="Post">
+      <div>
+        <input type="text" placeholder="John" name="fName" class="fName" />
+        <input type="text" placeholder="Doe" name="lName" class="lName" />
+        <button type="submit">Send</button>
+      </div>
+      <p class="output"></p>
+    </form>
+    <script>
+        document.querySelector('form').addEventListener("submit", function(e) {
+            e.preventDefault()
+            const fName = document.querySelector(".fName").value
+            const lName = document.querySelector(".lName").value
+            const output = document.querySelector(".output")
+            const userdata = {
+                firstName: fName,
+                lastName: lName
+            }
+
+            const userdatajson = JSON.stringify(userdata)
+            output.textContent = userdatajson
+            this.reset()
+        })
+    </script>
+  </body>
+</html>
