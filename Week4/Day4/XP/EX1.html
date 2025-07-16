@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Form</title>
+    <style>
+     
+
+     
+
+      form div {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        gap: 0.3rem;
+      }
+      button {
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="Get">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" name="name"/>
+        <label for="comments">Commenets</label>
+        <textarea name="commenets"></textarea>
+        <button type="submit">Send</button>
+      </div>
+    </form>
+  </body>
+</html>
+<!--The data sent will appear next to url as query-->

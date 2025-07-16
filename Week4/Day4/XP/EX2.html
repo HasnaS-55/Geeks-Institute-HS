@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Form#2</title>
+    <style>
+     
+
+     
+
+      form div {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        gap: 0.3rem;
+      }
+      button {
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="Post">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" name="name"/>
+        <label for="comments">Commenets</label>
+        <textarea name="commenets"></textarea>
+        <button type="submit">Send</button>
+      </div>
+    </form>
+  </body>
+</html>
+
+<!-- The data will be in request body when not be in URL because it is post methods to see the data sent open devTool -->
