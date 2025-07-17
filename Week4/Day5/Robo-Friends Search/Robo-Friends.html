@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robot-Friends</title>
+    <link
+      href="https://fonts.cdnfonts.com/css/sega-logo-font"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      h2 {
+        font-family: "SEGA LOGO FONT", sans-serif;
+      }
+
+      .card {
+        background-color: lightgray;
+        padding: 10px;
+        justify-items: center;
+        border-radius: 20px;
+        gap: 20px;
+      }
+      .card:hover {
+        transform: scale(1.06) translateY(-5px);
+        box-shadow: 0 6px 12px rgba(150, 150, 150, 0.3);
+      }
+
+      .card img {
+        border-radius: 50%;
+        margin-bottom: 10px;
+        background-color: grey;
+        
+      }
+      .card:hover img {
+        transform: scale(1.1) translateY(-5px);
+      }
+
+      input {
+        background-color: lightgoldenrodyellow;
+        padding: 5px;
+        width: 40%;
+        border-radius: 10px;
+      }
+
+      h6 {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      p {
+        font-size: 12px;
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="w-[95]  flex items-center bg-orange-100 m-2 p-6 rounded-xl justify-content-center"
+    >
+      <h2>ROBOFRIENDS</h2>
+      <input type="search" placeholder="Search Robots" class="mx-auto" id="search" />
+    </div>
+    <section>
+      <div
+        id="grid"
+        class="w-[90%] grid sm:grid-cols-1 md:grid-cols-5 gap-4 p-10 mx-auto items-center"
+      ></div>
+    </section>
+    <script src="Robo-Friends.js"></script>
+  </body>
+</html>
