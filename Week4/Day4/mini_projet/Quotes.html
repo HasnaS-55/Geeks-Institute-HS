@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      #quote-container {
+        margin: 30px 0;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        min-height: 150px;
+      }
+      #quote {
+        font-size: 1.5em;
+        font-style: italic;
+      }
+      #author {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      #likes {
+        color: #666;
+        margin-top: 5px;
+      }
+      button,
+      input[type="submit"] {
+        padding: 8px 15px;
+        margin: 5px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover,
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      form {
+        margin: 20px 0;
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+      }
+      input[type="text"] {
+        padding: 8px;
+        margin: 5px;
+        width: 200px;
+      }
+      .stats {
+        margin-top: 10px;
+        font-size: 0.9em;
+        color: #555;
+      }
+      .navigation {
+        display: none;
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Quote Generator</h1>
+
+    
+    <section id="quote-container">
+      <p id="quote"></p>
+      <p id="author"></p>
+      <p id="likes"></p>
+      <div class="stats" id="stats"></div>
+      <button id="generate-btn">Generate Quote</button>
+    </section>
+
+   
+    <form id="add-quote-form">
+      <h3>Add New Quote</h3>
+      <input type="text" id="new-quote" placeholder="Quote" required />
+      <input type="text" id="new-author" placeholder="Author" required />
+      <input type="submit" value="Add Quote" />
+    </form>
+
+    
+    <div>
+      <button id="count-chars-with-spaces">
+        Count Characters (with spaces)
+      </button>
+      <button id="count-chars-no-spaces">Count Characters (no spaces)</button>
+      <button id="count-words">Count Words</button>
+      <button id="like-quote">Like Quote</button>
+    </div>
+
+    
+    <form id="filter-form">
+      <h3>Filter by Author</h3>
+      <input
+        type="text"
+        id="filter-author"
+        placeholder="Author name"
+        required
+      />
+      <input type="submit" value="Filter Quotes" />
+    </form>
+
+    
+    <div class="navigation" id="navigation">
+      <button id="prev-quote">Previous</button>
+      <span id="filter-info"></span>
+      <button id="next-quote">Next</button>
+    </div>
+
+    <script src="Quotes.js"></script>
+  </body>
+</html>
