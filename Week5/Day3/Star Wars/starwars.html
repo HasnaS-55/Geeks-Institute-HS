@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background-color: #121212;
+        color: #f5f5f5;
+        line-height: 1.6;
+      }
+
+      .container {
+        background-color: #1e1e1e;
+        border-radius: 12px;
+        position: relative;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        color: #ffe81f;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .fa-3x {
+        text-align: center;
+        margin: 2rem 0;
+        color: #ffe81f;
+        font-size: 2.5rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+      }
+
+      .info {
+        background-color: #2c2c2c;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-left: 4px solid #ffe81f;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .info h3 {
+        color: #ffe81f;
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+      }
+
+      .info h4 {
+        margin: 0.5rem 0;
+        font-weight: normal;
+        color: #ccc;
+      }
+
+      #btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #ffe81f;
+        color: #000;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      #btn:hover {
+        background-color: #f5d000;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 232, 31, 0.3);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .info {
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="fa-3x hidden">
+        <i class="fa-solid fa-spinner fa-spin-pulse"></i>
+      </div>
+      <h1>Star wars</h1>
+      <div class="info"></div>
+      <button id="btn">Find a New One</button>
+    </div>
+    <script src="starwars.js"></script>
+  </body>
+</html>
