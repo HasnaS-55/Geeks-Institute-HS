@@ -8,7 +8,7 @@ async function retrieveData(endpoint, offset, limit) {
 
         const result = await response.json()
         const dataSliced = result.data.slice(offset, limit) 
-        console.log(dataSliced.length)
+        console.log(dataSliced)
         
         
         

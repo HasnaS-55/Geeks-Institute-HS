@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giphy Search</title>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#gifForm {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#deleteAll {
+    background-color: #f44336;
+    margin-bottom: 20px;
+}
+
+#deleteAll:hover {
+    background-color: #d32f2f;
+}
+
+#gifsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gif-wrapper {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.gif-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.gif-wrapper button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: rgba(244, 67, 54, 0.8);
+    font-size: 14px;
+}
+
+.gif-wrapper button:hover {
+    background-color: rgba(211, 47, 47, 0.9);
+}
+    </style>
+</head>
+<body>
+    <form id="gifForm">
+        <input type="text" id="searchInput" placeholder="Search GIFs...">
+        <button type="submit">Search</button>
+    </form>
+    <button id="deleteAll">DELETE ALL</button>
+    <div id="gifsContainer"></div>
+    <script src="Gifts.js"></script>
+</body>
+</html>
