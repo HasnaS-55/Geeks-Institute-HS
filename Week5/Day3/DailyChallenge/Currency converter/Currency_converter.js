@@ -39,7 +39,7 @@ async function retrieveData() {
 
       const calculation = ((amount / fromRate) * toRate).toFixed(2);
 
-      result.innerHTML = `<p>${calculation}${from.value}</p>`;
+      result.innerHTML = `<p>${calculation}${to.value}</p>`;
     });
   } catch (err) {
     console.error(err);
