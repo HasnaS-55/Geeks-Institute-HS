@@ -1,0 +1,159 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Emoji Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .emoji-display {
+            font-size: 5rem;
+            margin: 20px;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .incorrect {
+            background-color: #f44336;
+            color: white;
+        }
+        #score {
+            font-size: 1.5rem;
+            margin: 20px;
+        }
+        #leaderboard {
+            margin-top: 30px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 Emoji Guessing Game</h1>
+    <div class="emoji-display" id="emoji">?</div>
+    <div class="options" id="options"></div>
+    <div id="feedback"></div>
+    <div id="score">Score: 0</div>
+    
+    <div id="gameOver" style="display: none;">
+        <h2>Game Over!</h2>
+        <p>Your final score: <span id="finalScore">0</span></p>
+        <input type="text" id="playerName" placeholder="Your name">
+        <button onclick="submitScore()">Submit Score</button>
+    </div>
+    
+    <div id="leaderboard">
+        <h2>🏆 Leaderboard</h2>
+        <ol id="leaderboardList"></ol>
+    </div>
+
+    <script>
+        let currentQuestion = null;
+        
+        // Get new question from server
+        async function getQuestion() {
+            const response = await fetch('http://localhost:5500/api/question');
+            currentQuestion = await response.json();
+            
+            document.getElementById('emoji').textContent = currentQuestion.emoji;
+            document.getElementById('feedback').textContent = '';
+            
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            currentQuestion.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.onclick = () => submitGuess(option);
+                optionsContainer.appendChild(button);
+            });
+        }
+        
+        // Submit guess to server
+        async function submitGuess(guess) {
+            const response = await fetch('http://localhost:5500/api/guess', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ guess })
+            });
+            
+            const result = await response.json();
+            document.getElementById('score').textContent = `Score: ${result.score}`;
+            
+            // Show feedback
+            const feedback = document.getElementById('feedback');
+            if (result.isCorrect) {
+                feedback.textContent = '✅ Correct!';
+                feedback.className = 'correct';
+            } else {
+                feedback.textContent = `❌ Incorrect! It was ${result.correct}`;
+                feedback.className = 'incorrect';
+            }
+            
+            
+            document.querySelectorAll('#options button').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            
+            setTimeout(getQuestion, 1500);
+        }
+        
+        
+        async function submitScore() {
+            const name = document.getElementById('playerName').value.trim();
+            if (!name) return;
+            
+            await fetch('http://localhost:5500/api/leaderboard', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name })
+            });
+            
+            updateLeaderboard();
+            document.getElementById('gameOver').style.display = 'none';
+        }
+        
+        y
+        async function updateLeaderboard() {
+            const response = await fetch('http://localhost:5500/api/leaderboard');
+            const leaderboard = await response.json();
+            
+            const list = document.getElementById('leaderboardList');
+            list.innerHTML = '';
+            
+            leaderboard.forEach((entry, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${index + 1}. ${entry.name}: ${entry.score}`;
+                list.appendChild(li);
+            });
+        }
+        
+        
+        getQuestion();
+        updateLeaderboard();
+    </script>
+</body>
+</html>

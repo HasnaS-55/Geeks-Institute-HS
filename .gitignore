@@ -103,7 +103,8 @@ pids/
 
 # Gatsby files
 .cache/
-public/
+package-lock.json
+node_modules
 
 # Svelte
 .svelte-kit/
