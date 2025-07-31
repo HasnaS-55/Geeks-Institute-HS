@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Manager</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>
+          <i style="color: var(--primary-color)" class="fas fa-folder-open"></i>
+          <div class="text-container">
+            <span class="rotating-text">
+              <span class="text-wrapper">
+                <span class="text-block">Create</span>
+                <span class="text-block">Update</span>
+                <span class="text-block">Delete</span>
+              </span>
+            </span>
+          </div>
+          <span style="color: var(--primary-color)">Files</span>
+        </h1>
+
+        <div class="actions">
+          <button id="createFolderBtn" class="btn" style="display: none">
+            <i class="fas fa-folder-plus"></i> New Folder
+          </button>
+          <button id="createFileBtn" class="btn">
+            <i class="fas fa-file-circle-plus"></i> New File
+          </button>
+        </div>
+      </div>
+
+      <!-- File List Section -->
+      <section class="file-list-section">
+        <div id="fileListContainer" class="file-explorer"></div>
+        <div id="listStatus" class="status-message"></div>
+      </section>
+    </div>
+
+    <!-- Create Folder Popup -->
+    <div id="createFolderPopup" class="popup">
+      <div class="popup-content">
+        <button id="closeCreateFolderBtn" class="close-btn">✕</button>
+        <h2>Create New Folder</h2>
+        <input type="text" id="folderName" placeholder="Folder name" />
+        <div class="popup-buttons">
+          <button id="confirmCreateFolder" class="confirm-btn">Create</button>
+          <button id="cancelCreateFolder" class="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create File Popup -->
+    <div id="createFilePopup" class="popup">
+      <div class="popup-content">
+        <button id="closeCreateFileBtn" class="close-btn">✕</button>
+        <h2>Create New File</h2>
+        <input type="text" id="fileName" placeholder="File name" />
+        <textarea id="fileContent" placeholder="File content"></textarea>
+        <div class="popup-buttons">
+          <button id="confirmCreateFile" class="confirm-btn">Create</button>
+          <button id="cancelCreateFile" class="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- View File Popup -->
+    <div id="viewPopup" class="popup">
+      <div class="popup-content">
+        <button id="closeViewBtn" class="close-btn">✕</button>
+        <h2 id="viewFileName"></h2>
+        <pre id="viewFileContent"></pre>
+      </div>
+    </div>
+
+    <!-- Update File Popup -->
+    <div id="updatePopup" class="popup">
+      <div class="popup-content">
+        <h2>Update File</h2>
+        <textarea id="updateContent"></textarea>
+        <div class="popup-buttons">
+          <button id="confirmUpdate" class="confirm-btn">Save Changes</button>
+          <button id="cancelUpdate" class="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Popup -->
+    <div id="deletePopup" class="popup">
+      <div class="popup-content">
+        <h2>Confirm Delete</h2>
+        <p>
+          Are you sure you want to delete <span id="deleteFileName"></span>?
+        </p>
+        <div class="popup-buttons">
+          <button id="confirmDelete" class="confirm-btn">Delete</button>
+          <button id="cancelDelete" class="cancel-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,507 @@
+/* Base Styles */
+:root {
+  --primary-color: #4285f4;
+  --secondary-color: #34a853;
+  --danger-color: #ea4335;
+  --warning-color: #fbbc05;
+  --light-gray: #f5f5f5;
+  --medium-gray: #c6c0b5;
+  --dark-gray: #757575;
+  --text-color: #333;
+  --background-color: #FFF8ED;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  background-color: var(--background-color);
+  gap: 80px;
+  
+  padding: 25px;
+  margin: 20px 0;
+  position: relative; /* Allows positioning with top and left */
+  
+  
+  
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; /* This will vertically center the content */
+  margin-bottom: 40px; 
+  height: 160px;
+  margin-top: 60px;/* Adds 40px space between header and cards */
+}
+/* Rotating header text effect */
+
+h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 1.5em; /* Fixed height to prevent layout shift */
+}
+
+.text-container {
+  display: inline-block;
+  background-color: #ff8b5c;
+  align-items: center;
+  border-radius: 4px;
+  padding: 0 20px;
+  height: 1.5em;
+  line-height: 1.5em;
+  vertical-align: middle;
+}
+
+.rotating-text {
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  vertical-align: middle;
+}
+
+.text-wrapper {
+  position: relative;
+  height: 100%;
+  display: inline-block;
+}
+
+.text-block {
+  position: absolute;
+  left: 0;
+  top: -40%;
+  opacity: 0;
+  animation: rotateWords 9s infinite;
+  white-space: nowrap;
+  color: white;
+  font-weight: bold;
+}
+
+.text-block:nth-child(1) {
+  animation-delay: 0s;
+  position: relative; /* Make first word visible initially */
+  opacity: 1;
+}
+.text-block:nth-child(2) {
+  animation-delay: 3s;
+}
+.text-block:nth-child(3) {
+  animation-delay: 6s;
+}
+
+@keyframes rotateWords {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  35% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #3367d6;
+}
+
+.btn i {
+  font-size: 14px;
+}
+
+/* File List Container */
+#fileListContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.loading, .error, .empty {
+  padding: 20px;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.error {
+  color: var(--danger-color);
+}
+
+.empty {
+  color: var(--dark-gray);
+}
+
+/* File Cards */
+.file-card {
+  background: white;
+  border-radius: 8px;
+  
+  padding: 16px;
+  transition: transform 0.2s;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.file-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.file-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.file-icon {
+  font-size: 32px;
+  color: var(--primary-color);
+}
+
+.folder-icon {
+  color: var(--warning-color);
+}
+
+.fa-plus {
+  color: white;
+}
+
+.uni {
+  color: white;
+}
+
+.file-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.file-name {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-meta {
+  font-size: 12px;
+  color: var(--dark-gray);
+}
+
+.file-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--medium-gray);
+}
+
+.file-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  color: var(--dark-gray);
+  transition: color 0.2s;
+}
+
+.file-actions button:hover {
+  color: var(--primary-color);
+}
+
+.file-actions .delete-btn:hover {
+  color: var(--danger-color);
+}
+
+/* Popup Styles */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--medium-gray);
+  padding-bottom: 10px;
+}
+
+.popup input[type="text"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--medium-gray);
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.popup textarea {
+  flex-grow: 1;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--medium-gray);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  min-height: 200px;
+  resize: vertical;
+}
+
+.popup-content pre {
+  white-space: pre-wrap;
+  overflow-y: auto;
+  flex-grow: 1;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid var(--medium-gray);
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.popup-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.confirm-btn {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #2d9248;
+}
+
+.cancel-btn {
+  background-color: var(--dark-gray);
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #616161;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--dark-gray);
+}
+
+.close-btn:hover {
+  color: var(--text-color);
+}
+
+/* Folder Styles */
+.folder-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 20px;
+  
+}
+
+.folder-header {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--medium-gray);
+  margin-bottom: 12px;
+  background-color: #ff8b5c;
+  border-radius: 4px;
+}
+
+.folder-icon {
+  font-size: 24px;
+  color: white;
+  margin-right: 12px;
+}
+
+.folder-info {
+  flex-grow: 1;
+}
+
+.folder-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+}
+
+.folder-meta {
+  font-size: 12px;
+  color: white;
+}
+
+.folder-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.folder-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dark-gray);
+  transition: color 0.2s;
+}
+
+.folder-actions button:hover {
+  color: var(--primary-color);
+}
+
+.folder-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.empty-folder {
+  font-size: 14px;
+  color: var(--dark-gray);
+  text-align: center;
+  padding: 10px;
+  font-style: italic;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: var(--light-gray);
+  transition: background-color 0.2s;
+}
+
+.file-item:hover {
+  background-color: #e9ecef;
+}
+
+.file-item .file-icon {
+  font-size: 16px;
+  color: var(--primary-color);
+  margin-right: 12px;
+}
+
+.file-item .file-info {
+  flex-grow: 1;
+}
+
+.file-item .file-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.file-item .file-meta {
+  font-size: 12px;
+  color: var(--dark-gray);
+}
+
+.file-item .file-actions {
+  display: flex;
+  gap: 8px;
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.file-item .file-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dark-gray);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.file-item .file-actions button:hover {
+  color: var(--primary-color);
+}
+
+.file-item .file-actions .delete-btn:hover {
+  color: var(--danger-color);
+}
