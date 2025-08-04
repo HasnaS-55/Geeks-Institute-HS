@@ -18,7 +18,12 @@ export const User = {
 
 
     updateUser: async (id, first_name, last_name) => {
-        const sql = 'UPDATE users SET firstname = COALESCE($2, name), lastname = COALESCE($3, lastname) WHERE id = $1 RETURNING *'
+        const sql = `UPDATE users 
+SET 
+    firstname = COALESCE($2, firstname),
+    lastname = COALESCE($3, lastname)
+WHERE id = $1 
+RETURNING *;`
         const result = await pool.query(sql, [id, first_name, last_name])
         return result.rows[0]
     }

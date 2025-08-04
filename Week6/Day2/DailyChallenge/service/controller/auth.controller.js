@@ -16,9 +16,15 @@ export const register = async (req, res) => {
     ) {
       return res.status(400).json({ message: "All fields are required" });
     }
+   
+    
     if (password !== confirmPassword) {
       return res.status(400).json({ message: "Passwords do not match" });
     }
+
+    
+    
+
     const newUser = await User.createUser(
       email,
       username,
@@ -26,8 +32,12 @@ export const register = async (req, res) => {
       lastname,
       password
     );
-    res.status(201).json({ message: "User created successfully", newUser });
+
+    console.log(newUser);
+    
+    res.status(201).json({ message: "User created successfully", user: newUser });
   } catch (error) {
+    console.error("Registration error:", error)
     res.status(500).json({ message: error.message });
   }
 };
@@ -42,9 +52,10 @@ export const login = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: "Your email is incorrect" });
     }
+    
 
-    const isPassWordValid = await comparePassword(password, user.password);
-    if (!isPasswordValid) {
+    const isPassWordValid = await comparePassword(password, user.password_hash);
+    if (!isPassWordValid) {
       return res.status(401).json({ message: "Your password is incorrect" });
     }
 
