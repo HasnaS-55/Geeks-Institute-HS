@@ -1,0 +1,27 @@
+
+{
+  "SocialMedias": [
+    "https://github.com/",
+    "https://www.linkedin.com/",
+    "https://www.facebook.com/"
+  ],
+  "Skills": {
+    "Programming Language": ["Java", "C#", "Python"],
+    "Web-Based Application Development": [
+      "JavaScript (ES5, ES6)",
+      "TypeScript",
+      "HTML5",
+      "CSS (SCSS/SASS)",
+      "React"
+    ]
+  },
+  "Experiences": [
+    {
+      "title": "Demo1 Technologies",
+      "position": "Full Stack Developer",
+      "date": "2017-01-01",
+      "location": "New York, USA",
+      "description": "Built and updated various Chrome Extensions."
+    }
+  ]
+}
