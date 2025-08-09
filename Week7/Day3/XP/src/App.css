@@ -1,0 +1,26 @@
+/* src/App.css */
+.App {
+  padding: 20px;
+  text-align: center;
+  
+}
+
+h1, h2 {
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+hr {
+  margin: 20px 0;
+}
+
+details {
+  background-color: #ffecec;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: left;
+}
