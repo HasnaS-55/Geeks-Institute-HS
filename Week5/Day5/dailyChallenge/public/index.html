@@ -1,159 +1,112 @@
-<!-- public/index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎮 Emoji Guessing Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-        .emoji-display {
-            font-size: 5rem;
-            margin: 20px;
-        }
-        .options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        button {
-            padding: 10px;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-        .correct {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .incorrect {
-            background-color: #f44336;
-            color: white;
-        }
-        #score {
-            font-size: 1.5rem;
-            margin: 20px;
-        }
-        #leaderboard {
-            margin-top: 30px;
-            text-align: left;
-        }
-    </style>
+<meta charset="utf-8" />
+<title>Emoji Guess</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root { font-family: system-ui, sans-serif; }
+  body { margin: 0; display:grid; place-items:center; min-height:100vh; background:#f7f7f7; }
+  .card { width:min(540px, 92vw); background:#fff; border-radius:16px; padding:20px; box-shadow:0 6px 24px rgba(0,0,0,.08); }
+  .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .score { background:#eef2ff; color:#3730a3; padding:6px 10px; border-radius:999px; font-size:14px; }
+  .emoji { font-size:96px; text-align:center; margin:12px 0 8px; }
+  .options { display:grid; gap:10px; margin-top:10px; }
+  .btn { padding:12px 14px; border:1px solid #e5e7eb; border-radius:10px; background:#fff; cursor:pointer; text-align:left; }
+  .btn:hover { background:#f3f4f6; }
+  .btn.correct { border-color:#10b981; background:#ecfdf5; }
+  .btn.wrong { border-color:#ef4444; background:#fef2f2; }
+  .feedback { margin-top:8px; min-height:1.2em; color:#6b7280; }
+</style>
 </head>
 <body>
-    <h1>🎮 Emoji Guessing Game</h1>
-    <div class="emoji-display" id="emoji">?</div>
+  <div class="card">
+    <div class="top">
+      <h2 style="margin:0">Emoji Guess</h2>
+      <span class="score" id="score">Score: 0</span>
+    </div>
+    <div class="emoji" id="emoji">🤔</div>
     <div class="options" id="options"></div>
-    <div id="feedback"></div>
-    <div id="score">Score: 0</div>
-    
-    <div id="gameOver" style="display: none;">
-        <h2>Game Over!</h2>
-        <p>Your final score: <span id="finalScore">0</span></p>
-        <input type="text" id="playerName" placeholder="Your name">
-        <button onclick="submitScore()">Submit Score</button>
-    </div>
-    
-    <div id="leaderboard">
-        <h2>🏆 Leaderboard</h2>
-        <ol id="leaderboardList"></ol>
-    </div>
+    <div class="feedback" id="fb"></div>
+  </div>
 
-    <script>
-        let currentQuestion = null;
-        
-        // Get new question from server
-        async function getQuestion() {
-            const response = await fetch('http://localhost:5500/api/question');
-            currentQuestion = await response.json();
-            
-            document.getElementById('emoji').textContent = currentQuestion.emoji;
-            document.getElementById('feedback').textContent = '';
-            
-            const optionsContainer = document.getElementById('options');
-            optionsContainer.innerHTML = '';
-            
-            currentQuestion.options.forEach(option => {
-                const button = document.createElement('button');
-                button.textContent = option;
-                button.onclick = () => submitGuess(option);
-                optionsContainer.appendChild(button);
-            });
-        }
-        
-        // Submit guess to server
-        async function submitGuess(guess) {
-            const response = await fetch('http://localhost:5500/api/guess', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ guess })
-            });
-            
-            const result = await response.json();
-            document.getElementById('score').textContent = `Score: ${result.score}`;
-            
-            // Show feedback
-            const feedback = document.getElementById('feedback');
-            if (result.isCorrect) {
-                feedback.textContent = '✅ Correct!';
-                feedback.className = 'correct';
-            } else {
-                feedback.textContent = `❌ Incorrect! It was ${result.correct}`;
-                feedback.className = 'incorrect';
-            }
-            
-            
-            document.querySelectorAll('#options button').forEach(btn => {
-                btn.disabled = true;
-            });
-            
-            
-            setTimeout(getQuestion, 1500);
-        }
-        
-        
-        async function submitScore() {
-            const name = document.getElementById('playerName').value.trim();
-            if (!name) return;
-            
-            await fetch('http://localhost:5500/api/leaderboard', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name })
-            });
-            
-            updateLeaderboard();
-            document.getElementById('gameOver').style.display = 'none';
-        }
-        
-        y
-        async function updateLeaderboard() {
-            const response = await fetch('http://localhost:5500/api/leaderboard');
-            const leaderboard = await response.json();
-            
-            const list = document.getElementById('leaderboardList');
-            list.innerHTML = '';
-            
-            leaderboard.forEach((entry, index) => {
-                const li = document.createElement('li');
-                li.textContent = `${index + 1}. ${entry.name}: ${entry.score}`;
-                list.appendChild(li);
-            });
-        }
-        
-        
-        getQuestion();
-        updateLeaderboard();
-    </script>
+<script>
+const emojis = [
+  { emoji: '😀', name: 'Smile' },
+  { emoji: '🐶', name: 'Dog' },
+  { emoji: '🌮', name: 'Taco' },
+  { emoji: '🚗', name: 'Car' },
+  { emoji: '🍕', name: 'Pizza' },
+  { emoji: '🎉', name: 'Party' },
+  { emoji: '🏀', name: 'Basketball' },
+  { emoji: '📚', name: 'Books' },
+  { emoji: '🎧', name: 'Headphones' },
+  { emoji: '🌧️', name: 'Rain' },
+  { emoji: '⏰', name: 'Alarm' },
+  { emoji: '🌙', name: 'Moon' },
+  { emoji: '🍎', name: 'Apple' },
+  { emoji: '✈️', name: 'Airplane' },
+  { emoji: '🏡', name: 'House' }
+];
+
+const $emoji = document.getElementById('emoji');
+const $opts  = document.getElementById('options');
+const $fb    = document.getElementById('fb');
+const $score = document.getElementById('score');
+
+let score = 0;
+let correctAnswer = null;
+let locked = false;
+
+function randInt(n){ return Math.floor(Math.random()*n); }
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=randInt(i+1); [a[i],a[j]]=[a[j],a[i]] } return a; }
+
+function newRound() {
+  locked = false;
+  $fb.textContent = '';
+  $opts.innerHTML = '';
+
+  const correct = emojis[randInt(emojis.length)];
+  correctAnswer = correct.name;
+
+  // choose 3 distractors
+  const pool = emojis.filter(e => e.name !== correct.name);
+  shuffle(pool);
+  const options = shuffle([correct.name, ...pool.slice(0,3).map(e => e.name)]);
+
+  // render
+  $emoji.textContent = correct.emoji;
+  options.forEach(name => {
+    const btn = document.createElement('button');
+    btn.className = 'btn';
+    btn.textContent = name;
+    btn.onclick = () => choose(name, btn);
+    $opts.appendChild(btn);
+  });
+}
+
+function choose(name, btn) {
+  if (locked) return;
+  locked = true;
+
+  const buttons = Array.from($opts.children);
+  buttons.forEach(b => {
+    if (b.textContent === correctAnswer) b.classList.add('correct');
+  });
+
+  if (name === correctAnswer) {
+    score += 1;
+    $score.textContent = `Score: ${score}`;
+    $fb.textContent = '✅ Correct!';
+  } else {
+    btn.classList.add('wrong');
+    $fb.textContent = `❌ Nope. Correct: "${correctAnswer}".`;
+  }
+
+  setTimeout(newRound, 800);
+}
+
+newRound();
+</script>
 </body>
 </html>
